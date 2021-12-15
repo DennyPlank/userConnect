@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+README
+(Dont forget to rename this Project!!)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Setup:
+1) Git clone github URL.
+2) CD into app_name=>Client and run 'yarn'
+3) in Client run <yarn add react-router-dom> 
+4) routes.rb is left blank. Update as needed. 
+5) In app_name, <rails db:drop db:create db:migrate>
