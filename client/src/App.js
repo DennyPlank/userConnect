@@ -8,6 +8,7 @@ import Layout from './Components/Pages/Layout';
 import RequireAuth from './Components/RequireAuth';
 import Login from './Components/Pages/Login';
 import Register from './Components/Pages/Register';
+import EditUser from './Components/Pages/EditUser';
 
 
 function App() {
@@ -21,10 +22,11 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/" element={<Home />} />
           <Route path="/public" element={<Public />} />
-          <Route path="/SignUp" element={<Register />} />
+          <Route path="/register" element={<Register />} />
           {/* Protected Routes */}
           <Route element={<RequireAuth/>}>
           <Route path="/protected" element={<Protected />} />
+          <Route path="/edit" element={<EditUser />} />
           </Route>
           </Route>
         </Routes>
@@ -32,17 +34,5 @@ function App() {
       </>
   );
 }
-
-// const styles = {
-//   navbar: {
-//     display: "flex",
-//     border: "solid",
-//     justfiyContent: "center"
-//   },
-//   appContainer: {
-//     display: "flex",
-//     justfiyContent: "center"
-//   }
-// }
 
 export default App;

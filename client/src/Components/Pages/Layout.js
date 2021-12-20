@@ -1,25 +1,43 @@
+import { useContext, useState } from "react";
 import { Link, Outlet } from "react-router-dom"
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Layout = () => {
+  const auth = useContext(AuthContext);
+  const renderAuthLinks = () => {
+    if (auth.authenticated) {
+      console.log("logged in and ", auth)
+      return (
+        <div style={styles.navbar}>
+            <div>
+              <Link to="/">Home</Link>
+            </div>
+            <div>
+              <Link to="/Protected">Profile</Link>
+            </div>
+            <div>
+              <Link to="/Public">Public</Link>
+            </div>
+        </div>
+      )
+    } else {
+      console.log( "not logged in and ", auth)
+      return (
+        <>
+        <div>
+          <Link to="/register">Register</Link>
+        </div>
+        <div>
+          <Link to="/login">Login</Link>
+        </div>
+        </>
+      )
+    }; 
+  };
   return (
     <div>
-      <div style={styles.navbar}>
-          <div>
-            <Link to="/">Home</Link>
-          </div>
-          <div>
-            <Link to="/Public">Public</Link>
-          </div>
-          <div>
-            <Link to="/Protected">Protected</Link>
-          </div>
-          <div>
-            <Link to="/Login">Login</Link>
-          </div>
-        
-          <div> 
-            <Link to="/SignUp"> Sign up here </Link>
-          </div>
+      <div>
+          {renderAuthLinks()}
       </div>
       <div style={styles.pageContainer}>
       <Outlet />
@@ -27,6 +45,8 @@ const Layout = () => {
     </div>
   )
 };
+
+export default Layout;
 
 const styles = {
   navbar: {
@@ -44,4 +64,3 @@ const styles = {
     margin: '5%'
   }
 }
-export default Layout;
