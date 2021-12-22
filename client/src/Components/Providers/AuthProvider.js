@@ -22,8 +22,16 @@ const AuthProvider = (props) => {
   const handleLogin = async (user, navigate) => {
     try {
       let res = await axios.post('api/auth/sign_in', user)
-      setUser(user)
-      console.log(res.data.data)
+      console.log("token:", res.headers['access-token'])
+      setUser(res.data.data)
+      // let headers = res.headers
+      //   axios.defaults.headers.common["access-token"] = headers["access-token"]
+      //   axios.defaults.headers.common["token-type"] = headers["token-type"]
+      //   axios.defaults.headers.common["client"] = headers["client"]
+      //   axios.defaults.headers.common["expiry"] = headers["expiry"]
+      //   axios.defaults.headers.common["uid"] = headers["uid"]
+      
+      // debugger;
       navigate("/protected")
     } catch (err) {
       console.log(err.response)
@@ -31,9 +39,17 @@ const AuthProvider = (props) => {
     }
   };
   
-  const handleLogout = async (props) => {
-    setUser(null)
-    console.log("handleLogout")
+  const handleLogout = async (navigate) => {
+    try {
+      let res = await axios.delete("api/auth/sign_out");
+      console.log(res.headers['access-token'] || "No Token" )
+      navigate("/login");
+      setUser(null);
+      console.log("logout hit")
+
+    } catch {
+    console.log("Error logging out")
+    }
   };
 
     return (
