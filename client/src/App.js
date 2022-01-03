@@ -20,11 +20,12 @@ function App() {
           {/* Public Routes */}
           <Route element={<Layout />}>
           <Route path="/login" element={<Login />}/>
-          <Route path="/" element={<Home />} />
           <Route path="/public" element={<Public />} />
           <Route path="/register" element={<Register />} />
+          {/* Having this here means that the user token is destroyed when you reload on any page not wrapped in AUTH */}
           {/* Protected Routes */}
           <Route element={<RequireAuth/>}>
+          <Route path="/" element={<Home />} />
           <Route path="/protected" element={<Protected />} />
           <Route path="/edit" element={<EditUser />} />
           </Route>

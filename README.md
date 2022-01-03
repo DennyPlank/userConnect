@@ -11,5 +11,5 @@ Setup:
 5) routes.rb is left blank. Update as needed. 
 6) In app_name, -rails db:drop db:create db:migrate-
 7) run -rails g devise_token_auth:install User api/auth-
-8) Add libraies? -yarn add styled-components semantic-ui-react semantic-ui-css- * add to index
+8) Add libraies? -yarn add styled-components semantic-ui-react semantic-ui-css- * add to index (import 'semantic-ui-css/semantic.min.css';)
 9)

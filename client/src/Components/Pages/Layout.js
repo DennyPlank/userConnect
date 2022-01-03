@@ -10,27 +10,33 @@ const Layout = () => {
       return (
         <div style={styles.navbar}>
             <div>
-              <Link to="/">Home</Link>
-            </div>
-            <div>
               <Link to="/Protected">Profile</Link>
             </div>
             <div>
+                <Link to="/">Home</Link>
+          </div>
+          <div>
               <Link to="/Public">Public</Link>
-            </div>
+          </div>
         </div>
       )
     } else {
-      console.log( "not logged in and ", auth)
+      console.log( "not logged in and ")
       return (
-        <>
         <div>
-          <Link to="/register">Register</Link>
+          {/* <div>
+                <Link to="/">Home</Link>
+          </div> */}
+          <div>
+              <Link to="/Public">Public</Link>
+          </div>
+          <div>
+            <Link to="/register">Register</Link>
+          </div>
+          <div>
+            <Link to="/login">Login</Link>
+          </div>
         </div>
-        <div>
-          <Link to="/login">Login</Link>
-        </div>
-        </>
       )
     }; 
   };

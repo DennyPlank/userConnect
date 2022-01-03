@@ -6,6 +6,8 @@
 
 const AuthProvider = (props) => {
     const [ user, setUser ] = useState(null);
+    const [users, setUsers ] = useState([])
+    
 
   const handleRegister = async (newUser, navigate) =>{
     try {
@@ -19,19 +21,18 @@ const AuthProvider = (props) => {
     }
   };
 
+  const getUsers = async () => {
+    console.log("getUsers hit")
+      let res = await axios.get('/users')
+      console.log(res.data)
+      // setUsers(res.data)
+    }
+
   const handleLogin = async (user, navigate) => {
     try {
       let res = await axios.post('api/auth/sign_in', user)
       console.log("token:", res.headers['access-token'])
       setUser(res.data.data)
-      // let headers = res.headers
-      //   axios.defaults.headers.common["access-token"] = headers["access-token"]
-      //   axios.defaults.headers.common["token-type"] = headers["token-type"]
-      //   axios.defaults.headers.common["client"] = headers["client"]
-      //   axios.defaults.headers.common["expiry"] = headers["expiry"]
-      //   axios.defaults.headers.common["uid"] = headers["uid"]
-      
-      // debugger;
       navigate("/protected")
     } catch (err) {
       console.log(err.response)
@@ -59,6 +60,7 @@ const AuthProvider = (props) => {
          handleRegister,
          handleLogin,
          handleLogout,
+         getUsers,
          setUser
       }}>
         {props.children}

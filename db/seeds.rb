@@ -6,13 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'database_cleaner'
+require 'faker'
 DatabaseCleaner.clean_with(:truncation)
-u1 = User.create(email: "test@test.com", password: 123456)
-# u2 = User.create(email: "test", password: 123456)
-# u3 = User.create(email: "test1@test.com", password: 123)
-# u4 = User.create(email: "test@test.com", password: 123456)
 
-p u1
-# p u2
-# p u3
-# p u4
+
+
+u1 = User.create(email: "test@test.com", password: 123456)
+
+20.times do
+  name = Faker::Name.name
+  age = Faker::Number.between(from: 1, to: 90)
+  gender = Faker::Gender.binary_type
+  Friend.create(name: name, age: age, gender: gender)
+end
+ puts "success"
